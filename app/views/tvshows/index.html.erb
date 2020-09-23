@@ -35,16 +35,18 @@
                 <th scope="col">TV Show Name</th>
                 <th scope="col">Channal</th>
                 <th scope="col">Time</th>
+                <th scope="col">Status</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-
+              
              <% @tvshows.each do |tvshow| %>
                 <tr>
                   <td><%= tvshow.title %></td>
                   <td><%= tvshow.channal.title.try(:titleize) %></td>
                   <td><%= set_Time(tvshow.showtime) %></td>
+                  <td><%= channal_status(tvshow.status) %></td>
                   <td>
                       <%= link_to 'Edit', edit_tvshow_path(tvshow) ,class: 'btn btn-primary btn-sm' %>
                       <%= link_to 'Destroy', tvshow_path(tvshow), method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn btn-danger btn-sm'%>
