@@ -1,0 +1,29 @@
+<div>
+  	<p> Hi <strong><%= @email %></strong>,</p>
+  	<p>Your these favourite will show start after 30 Minutes!</p>
+	  <table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th scope="col">TV Show Name</th>
+	        <th scope="col">Channal</th>
+	        <th scope="col">Time</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+
+	     <% @tvshows.each do |tvshow| %>
+	        <tr>
+	          <td><%= tvshow.title %></td>
+	          <td><%= tvshow.channal.title.try(:titleize) %></td>
+	          <td><%= set_Time(tvshow.showtime) %></td>
+	        </tr>
+	      <% end %>
+	    
+	    </tbody>
+	  </table>
+	 <% end -%>
+</div>
+
+<p>Your technology success system,<br>
+	<strong>TV Shows</strong>
+</p>
