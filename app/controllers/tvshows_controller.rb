@@ -1,5 +1,5 @@
 class TvshowsController < ApplicationController
-  before_action :set_tvshow, only: [:show, :edit, :update, :destroy]
+  before_action :set_tvshow, only: [:show, :edit, :update, :destroy,:add_favourite]
   include ApplicationHelper
   
   # GET /tvshows
@@ -26,8 +26,15 @@ class TvshowsController < ApplicationController
   end
 
   def add_favourite
-    render json: params
-    return
+      @tvshow.isfavourite = params[:isfavourite] 
+      if @tvshow.save
+        redirect_to root_path
+        if @tvshow.isfavourite == true
+          flash[:notice] = 'Added to favorites!.'
+        else
+          flash[:notice] = 'Removed to favorites!.'
+        end
+      end
   end
 
   # POST /tvshows

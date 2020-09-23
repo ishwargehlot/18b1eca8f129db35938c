@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   
   resources :tvshows
   resources :channals
-
-  get 'tvshow/:tvshow_id' ,to: 'tvshows#add_favourite' ,as: 'tv_shows_favourite'
+  
+  get 'tvshow/:id' ,to: 'tvshows#add_favourite' ,as: 'tv_shows_favourite'
 
   root 'page#index'
 

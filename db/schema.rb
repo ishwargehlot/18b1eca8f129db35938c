@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_151618) do
+ActiveRecord::Schema.define(version: 2020_09_23_153836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_151618) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "isfavourite", default: false
+    t.boolean "status", default: true
     t.index ["channal_id"], name: "index_tvshows_on_channal_id"
   end
 
