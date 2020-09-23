@@ -26,12 +26,17 @@
            <br>
             <%= form.select :channal_id, options_for_select(Channal.channal_list,form.object.channal_id),include_blank: 'Select Channal Type', class: "form-control" %>
         </div>
-        
+
         <div class="form-group">
           <%= form.label :showtime %>
-          <%= form.text_field :showtime ,class: 'form-control' %>
+            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                <input type="text" name="tvshow[showtime]" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                </div>
+            </div>
         </div>
-
+             
         <div class="actions">
           <%= form.submit class: 'btn btn-primary' %>
           <%= link_to 'Back', channals_path ,class: 'btn btn-secondary' %>
@@ -41,3 +46,15 @@
     </div>
   </div>
 </div>
+
+
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+      $('#datetimepicker1').datetimepicker({
+        format: 'LT',
+        icons: {
+          time: 'fa fa-clock',
+        },
+      });
+  </script>
+<% end -%>
