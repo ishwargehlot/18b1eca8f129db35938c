@@ -28,6 +28,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
+          <% if @channals.length > 0 %>
           <table class="table table-hover">
             <thead>
               <tr>
@@ -53,6 +54,15 @@
             
             </tbody>
           </table>
+
+          <% else %>
+            <div class="card">
+              <div class="card-body">
+                <h5>No Record Found</h5>
+              </div>
+            </div>
+          <% end -%>
+
         </div>
       </div>
     </div>

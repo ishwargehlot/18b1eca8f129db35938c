@@ -1,10 +1,14 @@
 class TvshowsController < ApplicationController
   before_action :set_tvshow, only: [:show, :edit, :update, :destroy]
-
+  include ApplicationHelper
+  
   # GET /tvshows
   # GET /tvshows.json
   def index
     @tvshows = Tvshow.all
+    if params[:search].present?
+      @tvshows = @tvshows.where("(lower(title) like ?)","%#{params[:search].strip.downcase}%")
+    end
   end
 
   # GET /tvshows/1
@@ -25,10 +29,10 @@ class TvshowsController < ApplicationController
   # POST /tvshows.json
   def create
     @tvshow = Tvshow.new(tvshow_params)
-
+    
     respond_to do |format|
       if @tvshow.save
-        format.html { redirect_to @tvshow, notice: 'Tvshow was successfully created.' }
+        format.html { redirect_to tvshows_url, notice: 'Tvshow was successfully created.' }
         format.json { render :show, status: :created, location: @tvshow }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class TvshowsController < ApplicationController
   def update
     respond_to do |format|
       if @tvshow.update(tvshow_params)
-        format.html { redirect_to @tvshow, notice: 'Tvshow was successfully updated.' }
+        format.html { redirect_to tvshows_url, notice: 'Tvshow was successfully updated.' }
         format.json { render :show, status: :ok, location: @tvshow }
       else
         format.html { render :edit }
@@ -69,6 +73,8 @@ class TvshowsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tvshow_params
-      params.require(:tvshow).permit(:title, :time, :channal_id)
-    end
+     p = params.require(:tvshow).permit(:title, :showtime, :channal_id)
+     p[:showtime] = parse_date_with_time(p[:showtime]) unless p[:showtime].to_s.empty?
+     return p;
+    end   
 end
