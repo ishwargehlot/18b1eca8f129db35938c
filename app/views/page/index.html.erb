@@ -9,8 +9,11 @@
 
 			<div class="container">
 				<div class="row">
-					<% if channal.tvshows.length > 0 %>
-						<% channal.tvshows.each do |tvshow| %>
+
+					<% @tvshows = channal.tvshows.where("(lower(title) like ?)","%#{params[:search].try(:downcase)}%") %>
+					
+					<% if @tvshows.length > 0 %>
+						<% @tvshows.each do |tvshow| %>
 							<div class="col-md-3">
 								<div class="card shadow-sm">
 							      <div class="card-header">
