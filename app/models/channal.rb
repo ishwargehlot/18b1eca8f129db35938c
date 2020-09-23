@@ -1,0 +1,2 @@
+class Channal < ApplicationRecord
+end
