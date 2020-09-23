@@ -42,7 +42,7 @@
              <% @channals.each do |channal| %>
                 <tr>
                   <td><%= channal.title %></td>
-                  <td><%= channal.channal_type %></td>
+                  <td><%= channal.channal_type.try(:titleize) %></td>
                   <td><%= channal_status(channal.is_active) %></td>
                   <td>
                       <%= link_to 'Edit', edit_channal_path(channal) ,class: 'btn btn-primary btn-sm' %>

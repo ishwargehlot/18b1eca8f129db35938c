@@ -15,3 +15,5 @@
 //= require jquery_ujs
 //= require ./popper.min.js
 //= require ./bootstrap.min.js
+//= require ./moment.min.js
+//= require ./tempusdominus-bootstrap-4.min.js

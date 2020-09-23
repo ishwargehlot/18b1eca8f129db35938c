@@ -1,12 +1,15 @@
 class ChannalsController < ApplicationController
   before_action :set_channal, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /channals
   # GET /channals.json
   def index
     @channals = Channal.all
+    if params[:search].present?
+      @channals = @channals.where("(lower(title) like ?)","%#{params[:search].strip.downcase}%")
+    end
   end
-
+  
   # GET /channals/1
   # GET /channals/1.json
   def show

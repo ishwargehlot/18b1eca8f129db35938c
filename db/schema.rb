@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_132432) do
+ActiveRecord::Schema.define(version: 2020_09_23_135750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "adminpack"
@@ -25,4 +25,14 @@ ActiveRecord::Schema.define(version: 2020_09_23_132432) do
     t.string "channal_type"
   end
 
+  create_table "tvshows", force: :cascade do |t|
+    t.string "title"
+    t.datetime "showtime"
+    t.bigint "channal_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["channal_id"], name: "index_tvshows_on_channal_id"
+  end
+
+  add_foreign_key "tvshows", "channals"
 end
