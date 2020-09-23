@@ -25,6 +25,11 @@ class TvshowsController < ApplicationController
   def edit
   end
 
+  def add_favourite
+    render json: params
+    return
+  end
+
   # POST /tvshows
   # POST /tvshows.json
   def create

@@ -1,7 +1,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-
 		<% @channals.each do |channal| %>
 			<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 			  <h4 class="display-4"><%= channal.title %></h4>
@@ -23,7 +22,13 @@
 							          <li><%= tvshow.channal.channal_type.try(:titleize) %></li>
 							          <li><%= channal_status(tvshow.channal.is_active) %></li>
 							        </ul>
-							        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Add to favourite</button>
+
+							        <% if tvshow.isfavourite%>
+							        	<a href="<%= tv_shows_favourite_path(tvshow,isfavourite: false) %>" class="btn btn-sm btn-block btn-outline-warning">Unfavourite</a>
+							        <% else %>
+							        	<a href="<%= tv_shows_favourite_path(tvshow,isfavourite: true) %>" class="btn btn-sm btn-block btn-outline-primary">Add to favourite</a>
+							        <% end -%>
+
 							      </div>
 							    </div>
 							</div>
