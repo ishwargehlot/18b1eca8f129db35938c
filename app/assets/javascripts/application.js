@@ -11,6 +11,7 @@
 // about supported directives.
 //
 // jQuery Easing
-//= require ./jquery.min.js
+//= require jquery
+//= require jquery_ujs
 //= require ./popper.min.js
 //= require ./bootstrap.min.js

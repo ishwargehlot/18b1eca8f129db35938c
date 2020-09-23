@@ -1,6 +1,6 @@
 class ChannalsController < ApplicationController
   before_action :set_channal, only: [:show, :edit, :update, :destroy]
-  
+
   # GET /channals
   # GET /channals.json
   def index
@@ -11,21 +11,21 @@ class ChannalsController < ApplicationController
   # GET /channals/1.json
   def show
   end
-  
+
   # GET /channals/new
   def new
     @channal = Channal.new
   end
-  
+
   # GET /channals/1/edit
   def edit
   end
-  
+
   # POST /channals
   # POST /channals.json
   def create
     @channal = Channal.new(channal_params)
-    
+
     respond_to do |format|
       if @channal.save
         format.html { redirect_to channals_url, notice: 'Channal was successfully created.' }
@@ -40,7 +40,7 @@ class ChannalsController < ApplicationController
   # PATCH/PUT /channals/1
   # PATCH/PUT /channals/1.json
   def update
-    respond_to do |format|
+    respond_to do |format|      
       if @channal.update(channal_params)
         format.html { redirect_to channals_url, notice: 'Channal was successfully updated.' }
         format.json { render :show, status: :ok, location: @channal }
@@ -69,6 +69,6 @@ class ChannalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def channal_params
-      params.require(:channal).permit(:title, :description, :is_active)
+      params.require(:channal).permit(:title, :description, :is_active,:channal_type)
     end
 end

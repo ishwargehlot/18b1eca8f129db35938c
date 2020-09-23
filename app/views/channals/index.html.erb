@@ -1,31 +1,60 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5>Channals</h5>
+    </div>
 
-<h1>Channals</h1>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-4">
+           <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" value="<%= params[:search] %>">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+        <div class="col-md-1">
+          <a href="<%= channals_path %>" class="btn btn-outline-primary my-2 my-sm-0">Show All</a>
+        </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Is active</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <div class="col-md-7">
+          <div class="text-right">
+            <a href="<%= new_channal_path %>" class="btn btn-outline-primary my-2 my-sm-0">New Channal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Channal Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
 
-  <tbody>
-    <% @channals.each do |channal| %>
-      <tr>
-        <td><%= channal.title %></td>
-        <td><%= channal.description %></td>
-        <td><%= channal.is_active %></td>
-        <td><%= link_to 'Show', channal %></td>
-        <td><%= link_to 'Edit', edit_channal_path(channal) %></td>
-        <td><%= link_to 'Destroy', channal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Channal', new_channal_path %>
+             <% @channals.each do |channal| %>
+                <tr>
+                  <td><%= channal.title %></td>
+                  <td><%= channal.channal_type %></td>
+                  <td><%= channal_status(channal.is_active) %></td>
+                  <td>
+                      <%= link_to 'Edit', edit_channal_path(channal) ,class: 'btn btn-primary btn-sm' %>
+                      <%= link_to 'Destroy', channal_path(channal), method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn btn-danger btn-sm'%>
+                  </td>
+                </tr>
+              <% end %>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

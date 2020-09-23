@@ -8,10 +8,22 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
     <%= render partial: "layouts/partials/header" %>
-    <%= yield %>
+
+    <% if notice.present? %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end -%>
+
+    <div style="margin-top: 15px;margin-bottom: 100px;">
+    <%= yield %>      
+    </div>
     <%= render partial: "layouts/partials/footer" %>
   </body>
 </html>

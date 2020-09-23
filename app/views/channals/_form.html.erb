@@ -1,32 +1,48 @@
-<%= form_with(model: channal, local: true) do |form| %>
-  <% if channal.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(channal.errors.count, "error") %> prohibited this channal from being saved:</h2>
-
-      <ul>
-        <% channal.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <%= form_with(model: channal, local: true) do |form| %>
+        <% if channal.errors.any? %>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <ul>
+              <% channal.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="form-group">
+          <%= form.label :title %>
+          <%= form.text_field :title ,class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+           <label>Channal Type</label>
+           <br>
+            <%= form.select :channal_type, options_for_select(Channal.channal_types,form.object.channal_type),include_blank: 'Select Channal Type', class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description ,class: 'form-control'%>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :is_active , "Active" %>
+          <%= form.check_box :is_active %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class: 'btn btn-primary' %>
+          <%= link_to 'Back', channals_path ,class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
+
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_active %>
-    <%= form.check_box :is_active %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
